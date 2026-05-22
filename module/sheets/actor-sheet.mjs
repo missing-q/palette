@@ -106,6 +106,9 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     // Offloading context prep to a helper function
     this._prepareItems(context);
 
+    // Add colors to context
+    context.colors = ["white", "black", "red", "blue", "green", "yellow"]
+
     return context;
   }
 

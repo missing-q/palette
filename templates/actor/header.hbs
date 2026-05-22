@@ -105,5 +105,39 @@
         {{/if}}
       </div>
     </div>
+
+    <!-- Funny color wheel stuff -->
+    <div class = "wheel" >
+      {{#each colors}}
+      <div class = "color {{this}} flexrow">
+        <div class = "shape">
+          <div class = "wrapper flexrow">
+            <input
+              type='radio'
+              value='1'
+              name = "{{this}}"
+              data-dtype='Number'
+            />
+
+            <input
+              type='radio'
+              value='2'
+              name = "{{this}}"
+              data-dtype='Number'
+            />
+
+            <input
+              type='radio'
+              value='3'
+              name = "{{this}}"
+              data-dtype='Number'
+            />
+          </div>
+        </div>
+      </div>
+
+      {{/each}}
+      
+    </div>
   </div>
 </header>

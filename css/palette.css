@@ -7,6 +7,12 @@
   --palette-c-white: #ffffff;
   --palette-c-black: #000000;
   --palette-c-groove: #eeede0;
+  --wheel-white: white;
+  --wheel-black: black;
+  --wheel-red: red;
+  --wheel-blue: blue;
+  --wheel-green: green;
+  --wheel-yellow: yellow;
 }
 
 .theme-dark {
@@ -253,7 +259,7 @@
   height: 100%;
 }
 .palette .tab {
-  max-height: 380px;
+  max-height: 400px;
 }
 .palette .tab.biography {
   flex: 1;
@@ -276,6 +282,77 @@
 .palette .ability-score,
 .palette .ability-mod {
   flex: 0 0 44px;
+}
+.palette .color {
+  position: absolute;
+  height: 10rem;
+  width: 10rem;
+  top: 10rem;
+  left: 10rem;
+  border-radius: 10rem;
+  transform-origin: 0 0;
+}
+.palette .color .shape {
+  clip-path: polygon(0 0, 100% 20%, 100% 100%, 20% 100%);
+  position: absolute;
+  height: 10rem;
+  width: 10rem;
+}
+.palette .color .wrapper {
+  transform: rotate(45deg);
+  transform-origin: 0.6rem;
+}
+.palette .wheel {
+  display: inline-block;
+  width: 20rem;
+  height: 20rem;
+  background-color: grey;
+  border-radius: 100%;
+  overflow: clip;
+  position: relative;
+}
+.palette .white {
+  transform: rotate(0deg);
+}
+.palette .white .shape {
+  background-color: var(--wheel-white);
+}
+.palette .black {
+  transform: rotate(60deg);
+}
+.palette .black .shape {
+  background-color: var(--wheel-black);
+}
+.palette .red {
+  transform: rotate(120deg);
+}
+.palette .red .shape {
+  background-color: var(--wheel-red);
+}
+.palette .blue {
+  transform: rotate(180deg);
+}
+.palette .blue .shape {
+  background-color: var(--wheel-blue);
+}
+.palette .green {
+  transform: rotate(240deg);
+}
+.palette .green .shape {
+  background-color: var(--wheel-green);
+}
+.palette .yellow {
+  transform: rotate(300deg);
+}
+.palette .yellow .shape {
+  background-color: var(--wheel-yellow);
+}
+.palette .color input {
+  -webkit-appearance: auto;
+     -moz-appearance: auto;
+          appearance: auto;
+  width: 1rem;
+  height: 1rem;
 }
 .palette .items-header {
   height: 28px;

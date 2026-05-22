@@ -58,8 +58,8 @@
   ],
   "version": "3.0.0",
   "compatibility": {
-    "minimum": "13.339",
-    "verified": "13.339"
+    "minimum": "14.0",
+    "verified": "14.0"
   },
   "esmodules": ["module/palette.mjs"],
   "styles": ["css/palette.css"],

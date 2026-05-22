@@ -10,3 +10,60 @@
 .ability-mod {
   flex: 0 0 44px;
 }
+
+.color {
+  position: absolute;
+  height: 10rem;
+  width: 10rem;
+  top: 10rem;
+  left: 10rem;
+  border-radius: 10rem;
+  transform-origin: 0 0;
+  
+}
+
+.color .shape {
+  clip-path: polygon(0 0, 100% 20%, 100% 100%, 20% 100%);
+  position: absolute;
+  height: 10rem;
+  width: 10rem;
+}
+
+.color .wrapper {
+  transform: rotate(45deg);
+  transform-origin: .6rem;
+}
+
+.wheel {
+  display: inline-block;
+  width: 20rem;
+  height: 20rem;
+  background-color: grey;
+  border-radius: 100%;
+  overflow: clip;
+  position: relative;
+}
+
+.white {transform: rotate(0deg);}
+.white .shape {background-color: $w-white;}
+
+.black {transform: rotate(60deg);}
+.black .shape {background-color: $w-black;}
+
+.red {transform: rotate(120deg);}
+.red .shape {background-color: $w-red;}
+
+.blue {transform: rotate(180deg);}
+.blue .shape {background-color: $w-blue;}
+
+.green {transform: rotate(240deg);}
+.green .shape {background-color: $w-green;}
+
+.yellow {transform: rotate(300deg);}
+.yellow .shape {background-color: $w-yellow;}
+
+.color input {
+  appearance: auto;
+  width: 1rem;
+  height: 1rem;
+}
