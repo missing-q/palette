@@ -7,12 +7,13 @@
   --palette-c-black: #000000;
   --palette-c-groove: #eeede0;
 
-  --wheel-white: white;
-  --wheel-black: black;
-  --wheel-red: red;
-  --wheel-blue: blue;
-  --wheel-green: green;
-  --wheel-yellow: yellow;
+  --chromatic-white: #e1e1df;
+  --chromatic-black: #353535;
+  --chromatic-red: #d92644;
+  --chromatic-blue: #2134de;
+  --chromatic-green: #51ce51;
+  --chromatic-yellow: #ebd934;
+  --chromatic-taint: #421e42;
 }
 
 .theme-dark {
@@ -35,9 +36,10 @@ $c-tan: var(--palette-c-tan);
 
 $c-groove: var(--palette-c-groove);
 
-$w-white : var(--wheel-white);
-$w-black : var(--wheel-black);
-$w-red: var(--wheel-red);
-$w-blue: var(--wheel-blue);
-$w-green: var(--wheel-green);
-$w-yellow: var(--wheel-yellow);
+$p-white : var(--chromatic-white);
+$p-black : var(--chromatic-black);
+$p-red: var(--chromatic-red);
+$p-blue: var(--chromatic-blue);
+$p-green: var(--chromatic-green);
+$p-yellow: var(--chromatic-yellow);
+$p-taint: var(--chromatic-taint);

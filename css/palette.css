@@ -7,12 +7,13 @@
   --palette-c-white: #ffffff;
   --palette-c-black: #000000;
   --palette-c-groove: #eeede0;
-  --wheel-white: white;
-  --wheel-black: black;
-  --wheel-red: red;
-  --wheel-blue: blue;
-  --wheel-green: green;
-  --wheel-yellow: yellow;
+  --chromatic-white: #e1e1df;
+  --chromatic-black: #353535;
+  --chromatic-red: #d92644;
+  --chromatic-blue: #2134de;
+  --chromatic-green: #51ce51;
+  --chromatic-yellow: #ebd934;
+  --chromatic-taint: #421e42;
 }
 
 .theme-dark {
@@ -283,76 +284,86 @@
 .palette .ability-mod {
   flex: 0 0 44px;
 }
-.palette .color {
-  position: absolute;
-  height: 10rem;
-  width: 10rem;
-  top: 10rem;
-  left: 10rem;
-  border-radius: 10rem;
-  transform-origin: 0 0;
-}
-.palette .color .shape {
-  clip-path: polygon(0 0, 100% 20%, 100% 100%, 20% 100%);
-  position: absolute;
-  height: 10rem;
-  width: 10rem;
-}
-.palette .color .wrapper {
-  transform: rotate(45deg);
-  transform-origin: 0.6rem;
-}
 .palette .wheel {
-  display: inline-block;
+  display: grid;
   width: 20rem;
-  height: 20rem;
+  aspect-ratio: 1;
   background-color: grey;
+}
+.palette {
+  /*code here heavily borrowed from https://stackoverflow.com/a/14185845 */
+}
+.palette .color {
+  --ba: 1turn/var(--n); /* angle of one slice */
+  --ca: var(--i)*var(--ba) + var(--oa, 30deg); /* slice rotation */
+  --dy: 50%*tan(.5*var(--ba)); /* half a slice height */
+  grid-area: 1/1; /* stack them all on top of each other */
+  place-content: center end; /* text at 3 o'clock pre rotation */
+  padding: 0.5em; /* space from circle edge to text */
+  border-radius: 50%; /* turn square into disc */
+  transform: rotate(calc(var(--ca)));
+  clip-path: polygon(50% 50%, 100% calc(50% - var(--dy)), 100% calc(50% + var(--dy)));
+  transition: 0.3s;
+  counter-reset: i calc(var(--i) + 1);
+  display: grid;
+}
+.palette .color::after {
+  /* reverse parent rotation for upright text */
+  rotate: calc(-1 * (var(--ca)));
+}
+.palette .zone {
+  rotate: calc(-1 * (var(--ca)));
+  place-self: center center;
+  position: absolute;
+  aspect-ratio: 1;
   border-radius: 100%;
-  overflow: clip;
-  position: relative;
+}
+.palette .zone.taint {
+  width: 4.4rem;
+  background-color: var(--chromatic-taint);
+}
+.palette .zone.reset {
+  width: 12rem;
+  border-radius: 100%;
+  border: solid 2px grey;
 }
 .palette .white {
-  transform: rotate(0deg);
-}
-.palette .white .shape {
-  background-color: var(--wheel-white);
+  background-color: var(--chromatic-white);
 }
 .palette .black {
-  transform: rotate(60deg);
-}
-.palette .black .shape {
-  background-color: var(--wheel-black);
+  background-color: var(--chromatic-black);
 }
 .palette .red {
-  transform: rotate(120deg);
-}
-.palette .red .shape {
-  background-color: var(--wheel-red);
+  background-color: var(--chromatic-red);
 }
 .palette .blue {
-  transform: rotate(180deg);
-}
-.palette .blue .shape {
-  background-color: var(--wheel-blue);
+  background-color: var(--chromatic-blue);
 }
 .palette .green {
-  transform: rotate(240deg);
-}
-.palette .green .shape {
-  background-color: var(--wheel-green);
+  background-color: var(--chromatic-green);
 }
 .palette .yellow {
-  transform: rotate(300deg);
-}
-.palette .yellow .shape {
-  background-color: var(--wheel-yellow);
+  background-color: var(--chromatic-yellow);
 }
 .palette .color input {
   -webkit-appearance: auto;
      -moz-appearance: auto;
           appearance: auto;
   width: 1rem;
-  height: 1rem;
+  aspect-ratio: 1;
+  z-index: 10;
+}
+.palette .color input[type=radio]:checked::before {
+  content: none !important;
+}
+.palette .color input[type=radio]:checked::after {
+  content: none !important;
+}
+.palette .color input[type=radio]::before {
+  content: none !important;
+}
+.palette .color input[type=radio]::after {
+  content: none !important;
 }
 .palette .items-header {
   height: 28px;

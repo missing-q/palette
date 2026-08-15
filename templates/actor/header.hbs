@@ -107,36 +107,19 @@
     </div>
 
     <!-- Funny color wheel stuff -->
-    <div class = "wheel" >
+    <div class = "wheel" style = "--n: 6" >
       {{#each colors}}
-      <div class = "color {{this}} flexrow">
-        <div class = "shape">
-          <div class = "wrapper flexrow">
-            <input
-              type='radio'
-              value='1'
-              name = "{{this}}"
-              data-dtype='Number'
-            />
+      <div class = "color {{this}}" style = "--i: {{@index}}">
+        <div class = "wrapper flexrow">
+          {{radioBoxes (concat "system.wheel." this ".value") ../trackerchoices checked=(lookup (lookup ../system.wheel this) "value")}}
 
-            <input
-              type='radio'
-              value='2'
-              name = "{{this}}"
-              data-dtype='Number'
-            />
-
-            <input
-              type='radio'
-              value='3'
-              name = "{{this}}"
-              data-dtype='Number'
-            />
-          </div>
         </div>
+        <div class = "zone taint"></div>
+        <div class = "zone reset"></div>
       </div>
 
       {{/each}}
+
       
     </div>
   </div>

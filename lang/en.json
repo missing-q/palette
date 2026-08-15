@@ -75,6 +75,14 @@
       "Temporary": "Temporary Effects",
       "Passive": "Passive Effects",
       "Inactive": "Inactive Effects"
+    },
+    "Colors": {
+      "White": "White",
+      "Black": "Black",
+      "Red": "Red",
+      "Blue": "Blue",
+      "Yellow": "Yellow",
+      "Green": "Green"
     }
   },
   "TYPES": {

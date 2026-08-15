@@ -21,3 +21,13 @@ PALETTE.abilityAbbreviations = {
   wis: 'PALETTE.Ability.Wis.abbr',
   cha: 'PALETTE.Ability.Cha.abbr',
 };
+
+PALETTE.colors =
+{
+  white: 'PALETTE.Colors.White',
+  black: 'PALETTE.Colors.Black',
+  red: 'PALETTE.Colors.Red',
+  blue: 'PALETTE.Colors.Blue',
+  yellow: 'PALETTE.Colors.Yellow',
+  green: 'PALETTE.Colors.Green'
+}

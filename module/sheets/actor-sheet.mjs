@@ -107,8 +107,8 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     this._prepareItems(context);
 
     // Add colors to context
-    context.colors = ["white", "black", "red", "blue", "green", "yellow"]
-
+    context.colors = ["black", "red", "yellow", "white", "blue", "green"]
+    context.trackerchoices = {"0": "", "1": "","2": "","3": "","4": "","5": ""}
     return context;
   }
 

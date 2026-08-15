@@ -31,6 +31,23 @@ export default class PaletteCharacter extends PaletteActorBase {
       }, {})
     );
 
+    // Add trackers for color wheel
+    schema.wheel = new fields.SchemaField(
+      Object.keys(CONFIG.PALETTE.colors).reduce((obj, color) => {
+        obj[color] = new fields.SchemaField({
+          value: new fields.StringField({
+            initial: "3"
+          }),
+        });
+        return obj;
+      }, {})
+    );
+
+    // add hand
+    schema.hand = new fields.ArrayField(
+      new fields.StringField()
+    );
+
     return schema;
   }
 
