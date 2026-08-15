@@ -15,7 +15,7 @@
     "Actor": {
       "Tabs": {
         "Biography": "Biography",
-        "Features": "Features",
+        "Trackers": "Trackers",
         "Gear": "Gear",
         "Spells": "Spells",
         "Effects": "Effects"
@@ -23,14 +23,16 @@
       "base": {
         "FIELDS": {
           "biography": {"label": "Biography"},
-          "health": {
-            "value": {"label": "Health"},
-            "max": {"label": "Maximum Health"}
+          "stress": {
+            "value": {"label": "Stress"},
+            "max": {"label": "Max Stress"}
           },
-          "power": {
-            "value": {"label": "Power"},
-            "max": {"label": "Maximum Power"}
-          }
+          "move": {
+            "speed": {"label": "Speed"},
+            "jump": {"label": "Jump"}
+          },
+          "tier": {"label": "Tier"},
+          "dn": {"label": "DN"}
         }
       },
       "Character": {

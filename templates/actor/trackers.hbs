@@ -1,0 +1,26 @@
+{{! Trackers Tab }}
+<section
+  class='tab trackers {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='trackers'
+>
+    <!-- Funny color wheel stuff -->
+    <div class = "wheel" style = "--n: 6" >
+        {{#each colors}}
+        <div class = "color {{this}}" style = "--i: {{@index}}">
+        <div class = "wrapper flexrow">
+            {{radioBoxes (concat "system.wheel." this ".value") ../trackerchoices checked=(lookup (lookup ../system.wheel this) "value")}}
+            
+        </div>
+        <div class = "zone taint"></div>
+        <div class = "zone reset"></div>
+        </div>
+        
+        <div class = "overflow" style = "--i: {{@index}}">
+        <button></button>
+        </div>
+        {{/each}}
+    </div>
+    
+</section>
+

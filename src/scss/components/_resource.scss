@@ -15,7 +15,7 @@
   display: grid;
   width: 20rem;
   aspect-ratio: 1;
-  background-color: grey;
+  margin: 2rem 0;
 }
 
 /*code here heavily borrowed from https://stackoverflow.com/a/14185845 */
@@ -41,6 +41,33 @@
         /* reverse parent rotation for upright text */
         rotate: calc(-1*(var(--ca)));
     }
+}
+
+.overflow {
+  --ba: 1turn/var(--n); /* angle of one slice */
+    --ca: var(--i)*var(--ba) + var(--oa, 30deg); /* slice rotation */
+    --dy: 50%*tan(.5*var(--ba)); /* half a slice height */
+    grid-area: 1/ 1; /* stack them all on top of each other */
+    place-content: center end; /* text at 3 o'clock pre rotation */
+    padding: .5em; /* space from circle edge to text */
+    border-radius: 50%; /* turn square into disc */
+    transform: /* need rotation before translation */
+        rotate(calc(var(--ca)));
+    transition: .3s;
+    counter-reset: i calc(var(--i) + 1);
+    display: grid;
+}
+
+.overflow button {
+  position: relative;
+  left: 1.5rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  padding: 0 0;
+  min-height: unset;
+  border: solid 2px grey;
 }
 
 .zone {
@@ -88,4 +115,10 @@
 
 .color input[type="radio"]::after {
     content: none !important;
+}
+
+.wrapper label:nth-child(7) {
+  background-color: orangered !important;
+  position: absolute;
+  left: 26.5em;
 }

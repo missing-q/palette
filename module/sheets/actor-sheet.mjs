@@ -40,9 +40,8 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
       // Foundry-provided generic template
       template: 'templates/generic/tab-navigation.hbs',
     },
-    features: {
-      template: 'systems/palette/templates/actor/features.hbs',
-      scrollable: [""],
+    trackers: {
+      template: 'systems/palette/templates/actor/trackers.hbs',
     },
     biography: {
       template: 'systems/palette/templates/actor/biography.hbs',
@@ -66,16 +65,16 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
   _configureRenderOptions(options) {
     super._configureRenderOptions(options);
     // Not all parts always render
-    options.parts = ['header', 'tabs', 'biography'];
+    options.parts = ['header', 'tabs'];
     // Don't show the other tabs if only limited view
     if (this.document.limited) return;
     // Control which parts show based on document subtype
     switch (this.document.type) {
       case 'character':
-        options.parts.push('features', 'gear', 'spells', 'effects');
+        options.parts.push('biography', 'trackers', 'gear', 'spells', 'effects');
         break;
       case 'npc':
-        options.parts.push('gear', 'effects');
+        options.parts.push('biography', 'gear', 'effects');
         break;
     }
   }
@@ -115,7 +114,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
   /** @override */
   async _preparePartContext(partId, context) {
     switch (partId) {
-      case 'features':
+      case 'trackers':
       case 'spells':
       case 'gear':
         context.tab = context.tabs[partId];
@@ -179,9 +178,9 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
           tab.id = 'biography';
           tab.label += 'Biography';
           break;
-        case 'features':
-          tab.id = 'features';
-          tab.label += 'Features';
+        case 'trackers':
+          tab.id = 'trackers';
+          tab.label += 'Trackers';
           break;
         case 'gear':
           tab.id = 'gear';
