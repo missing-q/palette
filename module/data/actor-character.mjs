@@ -13,7 +13,7 @@ export default class PaletteCharacter extends PaletteActorBase {
 
     // Add trackers for color wheel
     schema.wheel = new fields.SchemaField(
-      Object.keys(CONFIG.PALETTE.colors).reduce((obj, color) => {
+      Object.keys(CONFIG.PALETTE.colorMap).reduce((obj, color) => {
         obj[color] = new fields.SchemaField({
           value: new fields.StringField({
             initial: "3"

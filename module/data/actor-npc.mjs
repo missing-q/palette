@@ -17,6 +17,8 @@ export default class PaletteNPC extends PaletteActorBase {
     //  min: 0,
     //});
 
+    schema.palette.locked = new fields.BooleanField({ initial: false }) //npcs can have 2 to 4 hues in their palette
+
     return schema;
   }
 

@@ -1,0 +1,8 @@
+<div class="color-roll">
+  <div class="results flexrow">
+    {{#each colorResults}}
+      <div class="die-result color-{{this}}"></div>
+    {{/each}}
+  </div>
+  <div class="successes">{{successes}} success{{#unless (eq successes 1)}}es{{/unless}}</div>
+</div>

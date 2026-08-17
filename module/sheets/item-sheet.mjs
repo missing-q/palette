@@ -55,6 +55,9 @@ export class PaletteItemSheet extends api.HandlebarsApplicationMixin(
     attributesSpell: {
       template: 'systems/palette/templates/item/attribute-parts/spell.hbs',
     },
+    attributesHue: {
+      template: 'systems/palette/templates/item/attribute-parts/hue.hbs',
+    },
     effects: {
       template: 'systems/palette/templates/item/effects.hbs',
     },
@@ -77,6 +80,9 @@ export class PaletteItemSheet extends api.HandlebarsApplicationMixin(
         break;
       case 'spell':
         options.parts.push('attributesSpell');
+        break;
+      case 'hue':
+        options.parts.push('attributesHue');
         break;
     }
   }
@@ -104,6 +110,8 @@ export class PaletteItemSheet extends api.HandlebarsApplicationMixin(
       systemFields: this.document.system.schema.fields,
     };
 
+    
+
     return context;
   }
 
@@ -112,6 +120,7 @@ export class PaletteItemSheet extends api.HandlebarsApplicationMixin(
     switch (partId) {
       case 'attributesFeature':
       case 'attributesGear':
+      case 'attributesHue':
       case 'attributesSpell':
         // Necessary for preserving active tab on re-render
         context.tab = context.tabs[partId];
@@ -173,6 +182,7 @@ export class PaletteItemSheet extends api.HandlebarsApplicationMixin(
           break;
         case 'attributesFeature':
         case 'attributesGear':
+        case 'attributesHue':
         case 'attributesSpell':
           tab.id = 'attributes';
           tab.label += 'Attributes';

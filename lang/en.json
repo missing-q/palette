@@ -18,7 +18,8 @@
         "Trackers": "Trackers",
         "Gear": "Gear",
         "Spells": "Spells",
-        "Effects": "Effects"
+        "Effects": "Effects",
+        "Palette": "Palette"
       },
       "base": {
         "FIELDS": {
@@ -95,7 +96,8 @@
     "Item": {
       "gear": "Gear",
       "feature": "Feature",
-      "spell": "Spell"
+      "spell": "Spell",
+      "hue": "Hue"
     }
   }
 }

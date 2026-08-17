@@ -40,6 +40,10 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
       // Foundry-provided generic template
       template: 'templates/generic/tab-navigation.hbs',
     },
+    palette: {
+      template: 'systems/palette/templates/actor/palette.hbs',
+      scrollable: [""],
+    },
     trackers: {
       template: 'systems/palette/templates/actor/trackers.hbs',
     },
@@ -71,10 +75,10 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     // Control which parts show based on document subtype
     switch (this.document.type) {
       case 'character':
-        options.parts.push('biography', 'trackers', 'gear', 'spells', 'effects');
+        options.parts.push('palette','trackers', 'biography', 'gear', 'spells', 'effects');
         break;
       case 'npc':
-        options.parts.push('biography', 'gear', 'effects');
+        options.parts.push('palette', 'biography', 'gear', 'effects');
         break;
     }
   }
@@ -105,9 +109,12 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     // Offloading context prep to a helper function
     this._prepareItems(context);
 
-    // Add colors to context
-    context.colors = ["black", "red", "yellow", "white", "blue", "green"]
-    context.trackerchoices = {"0": "", "1": "","2": "","3": "","4": "","5": ""}
+    // Add color trackers to context
+    context.trackerchoices = {}
+    for (const [i, value] of Object.entries(CONFIG.PALETTE.colors)) {
+      context.trackerchoices[`${i}`] = ""
+    }
+
     return context;
   }
 
@@ -115,6 +122,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
   async _preparePartContext(partId, context) {
     switch (partId) {
       case 'trackers':
+      case 'palette':
       case 'spells':
       case 'gear':
         context.tab = context.tabs[partId];
@@ -158,7 +166,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     // If you have sub-tabs this is necessary to change
     const tabGroup = 'primary';
     // Default tab for first time it's rendered this session
-    if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = 'biography';
+    if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = 'palette';
     return parts.reduce((tabs, partId) => {
       const tab = {
         cssClass: '',
@@ -174,6 +182,10 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
         case 'header':
         case 'tabs':
           return tabs;
+        case 'palette':
+          tab.id = 'palette';
+          tab.label += 'Palette';
+          break;
         case 'biography':
           tab.id = 'biography';
           tab.label += 'Biography';
@@ -213,6 +225,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     // this sheet does with spells
     const gear = [];
     const features = [];
+    const hues = [];
     const spells = {
       0: [],
       1: [],
@@ -231,6 +244,9 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
       // Append to gear.
       if (i.type === 'gear') {
         gear.push(i);
+      }
+      else if (i.type === 'hue') {
+        hues.push(i);
       }
       // Append to features.
       else if (i.type === 'feature') {
@@ -252,6 +268,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     context.gear = gear.sort((a, b) => (a.sort || 0) - (b.sort || 0));
     context.features = features.sort((a, b) => (a.sort || 0) - (b.sort || 0));
     context.spells = spells;
+    context.hues = hues;
   }
 
   /**

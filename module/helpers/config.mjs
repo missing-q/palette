@@ -22,12 +22,14 @@ PALETTE.abilityAbbreviations = {
   cha: 'PALETTE.Ability.Cha.abbr',
 };
 
-PALETTE.colors =
+PALETTE.colors = ["white", "black", "red", "blue", "green", "yellow" ];
+
+PALETTE.colorMap = //map values to labels
 {
   white: 'PALETTE.Colors.White',
   black: 'PALETTE.Colors.Black',
   red: 'PALETTE.Colors.Red',
   blue: 'PALETTE.Colors.Blue',
+  green: 'PALETTE.Colors.Green',
   yellow: 'PALETTE.Colors.Yellow',
-  green: 'PALETTE.Colors.Green'
 }

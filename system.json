@@ -35,6 +35,9 @@
         },
         "spell": {
             "htmlFields": ["description"]
+        },
+        "hue": {
+            "htmlFields": ["description"]
         }
     }
   },

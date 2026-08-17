@@ -9,14 +9,15 @@ export default class PaletteHue extends PaletteItemBase {
     const fields = foundry.data.fields;
     const schema = super.defineSchema();
 
-    schema.spellLevel = new fields.NumberField({
-      required: true,
-      nullable: false,
-      integer: true,
-      initial: 1,
-      min: 0,
-      max: 9,
+    schema.color = new fields.StringField({initial: "none"});
+    schema.links = new fields.SchemaField({});
+    schema.skills = new fields.SchemaField({
+      proficiency1: new fields.StringField({initial: ""}),
+      proficiency2: new fields.StringField({initial: ""}),
+      incompetency: new fields.StringField({initial: ""}),
+      mastery: new fields.HTMLField(),
     });
+
 
     return schema;
   }

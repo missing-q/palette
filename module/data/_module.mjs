@@ -8,3 +8,4 @@ export { default as PaletteItemBase } from './base-item.mjs';
 export { default as PaletteGear } from './item-gear.mjs';
 export { default as PaletteFeature } from './item-feature.mjs';
 export { default as PaletteSpell } from './item-spell.mjs';
+export { default as PaletteHue } from './item-hue.mjs';

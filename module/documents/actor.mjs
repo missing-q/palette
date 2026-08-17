@@ -3,6 +3,19 @@
  * @extends {Actor}
  */
 export class PaletteActor extends Actor {
+
+  async _onCreate(data, options, userId) {
+    await super._onCreate(data, options, userId);
+    // Add three Hues to newly created character's sheet.
+    let newItem = {
+      "name": "New Hue",
+      "type": "hue",
+    }
+    for (let i = 0; i < 3; i++){ //create three hue items
+      this.createEmbeddedDocuments("Item", [newItem]) 
+    }
+    
+  }
   /** @override */
   prepareData() {
     // Prepare data for the actor. Calling the super version of this executes

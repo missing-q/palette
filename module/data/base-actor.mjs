@@ -19,6 +19,10 @@ export default class PaletteActorBase extends foundry.abstract
         jump: new fields.NumberField({ ...requiredInteger, initial: 1 }),
       }),
     });
+
+    schema.palette =  new fields.SchemaField({
+      locked: new fields.BooleanField({ initial: true }), // this attribute determines if the palette size is restricted to 3 hues; locked for PCs and unlocked for NPCs
+    });
     
     schema.biography = new fields.HTMLField();
 

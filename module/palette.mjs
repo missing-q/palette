@@ -8,6 +8,8 @@ import { PaletteItemSheet } from './sheets/item-sheet.mjs';
 import { PALETTE } from './helpers/config.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
+//import color dice
+import { ColorDie } from './dice/die.mjs';
 
 const collections = foundry.documents.collections;
 const sheets = foundry.appv1.sheets;
@@ -61,6 +63,7 @@ Hooks.once('init', function () {
     gear: models.PaletteGear,
     feature: models.PaletteFeature,
     spell: models.PaletteSpell,
+    hue : models.PaletteHue,
   };
 
   // Active Effects are never copied to the Actor,
@@ -79,6 +82,9 @@ Hooks.once('init', function () {
     makeDefault: true,
     label: 'PALETTE.SheetLabels.Item',
   });
+
+  CONFIG.Dice.terms["c"] = ColorDie; CONFIG.Dice.types.push(ColorDie); // add color dice
+
 });
 
 /* -------------------------------------------- */
