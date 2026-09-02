@@ -1,8 +1,22 @@
-<div class="color-roll">
-  <div class="results flexrow">
-    {{#each colorResults}}
-      <div class="die-result color-{{this}}"></div>
+<div class="color-dice-roll">
+  <header class="color-dice-header">
+    <span class="formula">{{formula}}</span>
+    <span class="success-count">{{successCount}} / {{diceCount}} hits</span>
+  </header>
+
+  {{#if successColors.length}}
+  <div class="target-colors">
+    Target colors:
+    {{#each successColors}}
+      <span class="swatch small color-{{this}}" title="{{this}}"></span>
     {{/each}}
   </div>
-  <div class="successes">{{successes}} success{{#unless (eq successes 1)}}es{{/unless}}</div>
+  {{/if}}
+
+  <div class="color-dice-faces">
+    {{#each faces}}
+    <span class="face-label">{{localize this.label}}</span>
+    {{/each}}
+  </div>
 </div>
+

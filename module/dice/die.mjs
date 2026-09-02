@@ -1,31 +1,26 @@
-export class ColorDie extends foundry.dice.terms.Die {
-  constructor(termData) {
-    termData.faces = 6; //this should always be a d6
-    super(termData);
-  }
+//Color dice!
 
-  /** @override */
+const { DiceTerm } = foundry.dice.terms;
+
+export class ColorDie extends DiceTerm {
+
+  // Registers this term under "c" so "3dc" resolves to ColorDie
   static DENOMINATION = "c";
-
-  /** @override */
+  // Modifiers are always zero 
   static MODIFIERS = {};
 
-  /** @override */
-  getResultLabel(result) {
-    return CONFIG.PALETTE.colors[result.result - 1];
+  constructor(termData = {}) {
+    // Faces are always fixed at 6
+    super({ ...termData, faces: 6 });
   }
 
-  /** @override */
+
+
+  //custom css 
   getResultCSS(result) {
-    const css = super.getResultCSS(result) ?? [];
-    css.push(`color-die-${CONFIG.PALETTE.colors[result.result - 1]}`);
-    return css;
+    const color = CONFIG.PALETTE.colors[result.result - 1] ?? "unknown";
+    const classes = super.getResultCSS(result) ?? [];
+    return [...classes, `color-${color}`];
   }
 
-  // Count how many results match the roller's hues
-  countSuccesses(successColors = []) {
-    return this.results.filter(
-      r => r.active && successColors.includes(CONFIG.PALETTE.colors[r.result - 1])
-    ).length;
-  }
 }

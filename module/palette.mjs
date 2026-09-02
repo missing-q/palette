@@ -8,8 +8,10 @@ import { PaletteItemSheet } from './sheets/item-sheet.mjs';
 import { PALETTE } from './helpers/config.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
-//import color dice
+//import color dice and command
 import { ColorDie } from './dice/die.mjs';
+import { ColorRoll } from './dice/roll.mjs';
+import { handleColorCommand } from './dice/command.mjs';
 
 const collections = foundry.documents.collections;
 const sheets = foundry.appv1.sheets;
@@ -83,7 +85,14 @@ Hooks.once('init', function () {
     label: 'PALETTE.SheetLabels.Item',
   });
 
-  CONFIG.Dice.terms["c"] = ColorDie; CONFIG.Dice.types.push(ColorDie); // add color dice
+  CONFIG.Dice.terms["c"] = ColorDie; 
+  CONFIG.Dice.types.push(ColorDie); // add color dice
+  CONFIG.Dice.rolls.push(ColorRoll);
+  //register color chat command
+    ChatLog.CHAT_COMMANDS.rc = {
+      rgx: /^\/rc(?:\s+(\d+))?\s*$/i, //fuck regex all my homies hate regex
+      fn: handleColorCommand,
+  };
 
 });
 
