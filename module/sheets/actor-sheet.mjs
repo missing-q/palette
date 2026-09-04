@@ -23,6 +23,8 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
       deleteDoc: this._deleteDoc,
       toggleEffect: this._toggleEffect,
       roll: this._onRoll,
+      addHand: this._addHand,
+      deleteHand: this._deleteHand,
     },
     // Custom property that's merged into `this.options`
     // dragDrop: [{ dragSelector: '.draggable', dropSelector: null }],
@@ -423,6 +425,39 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
       });
       return roll;
     }
+  }
+
+    /**
+   * Handles adding Hand
+   * @this PaletteActorSheet
+   * @param {PointerEvent} event   The originating click event
+   * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+   * @private
+   */
+  static async _addHand(event, target) {
+    //console.log(target)
+    const option = target.previousElementSibling;
+    const value = option.value;
+    let data = this.actor.system.hand.value;
+    data.push(value)
+    //update actor data
+    this.actor.update({"system.hand.value": data})
+  }
+
+    /**
+   * Handles deleting Hand
+   *
+   * @this PaletteActorSheet
+   * @param {PointerEvent} event   The originating click event
+   * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+   * @protected
+   */
+  static async _deleteHand(event, target) {
+    let idx = Number(target.dataset.index)
+    let data = this.actor.system.hand.value;
+    data.splice(idx,1)
+    //update actor data
+    this.actor.update({"system.hand.value": data})
   }
 
   /** Helper Functions */

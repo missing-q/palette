@@ -35,13 +35,15 @@ export class ColorRoll extends Roll {
 
   // mark successes against successcolors
   #flagSuccesses() {
-    const targets = new Set(this.successColors.map((c) => c.toLowerCase()));
-    for (const term of this.terms) {
-      if (!(term instanceof ColorDie)) continue;
-      for (const result of term.results) {
-        const color = ColorHelper.colorOf(result.result - 1);
-        result.success = targets.has(color);
-        result.failure = !result.success;
+    if (this.options.success){
+      const targets = new Set(this.successColors.map((c) => c.toLowerCase()));
+      for (const term of this.terms) {
+        if (!(term instanceof ColorDie)) continue;
+        for (const result of term.results) {
+          const color = ColorHelper.colorOf(result.result - 1);
+          result.success = targets.has(color);
+          result.failure = !result.success;
+        }
       }
     }
   }
@@ -55,7 +57,6 @@ export class ColorRoll extends Roll {
         let tmp = ColorHelper.colorOf(result.result - 1);
         out.push({
           color: tmp,
-          label: ColorHelper.getLabel(tmp),
           success: !!result.success,
         });
       }
@@ -63,7 +64,7 @@ export class ColorRoll extends Roll {
     return out;
   }
 
-  // override total to return all dice instead of summing
+  // override total to return successes
   /** @override */
   get total() {
     return this.faceResults.filter((r) => r.success).length;
@@ -77,9 +78,11 @@ export class ColorRoll extends Roll {
     const data = {
       formula: this.formula,
       faces: this.faceResults,
+      success: this.options.success,
+      hand: this.options.hand,
       successCount: this.total,
       diceCount: this.faceResults.length,
-      successColors: ColorHelper.getLabels(this.successColors),
+      successColors: this.successColors,
     };
     return foundry.applications.handlebars.renderTemplate(
       this.constructor.CHAT_TEMPLATE,
@@ -95,14 +98,14 @@ export class ColorRoll extends Roll {
     const msgData = foundry.utils.mergeObject(
       {
         content,
-        rolls: [this], // keeps Dice So Nice! and roll history working
+        rolls: [this], // keeps Dice So Nice and roll history working
         sound: CONFIG.sounds.dice,
       },
       messageData
     );
 
     const cls = getDocumentClass("ChatMessage");
-    const msg = new cls(cls.applyRollMode(msgData, rollMode ?? game.settings.get("core", "rollMode")));
+    let msg = new cls(cls.applyRollMode(msgData, rollMode ?? game.settings.get("core", "rollMode")));
     return create ? cls.create(msg.toObject()) : msg;
   }
 }

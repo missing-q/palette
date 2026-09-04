@@ -1,22 +1,38 @@
 <div class="color-dice-roll">
   <header class="color-dice-header">
-    <span class="formula">{{formula}}</span>
-    <span class="success-count">{{successCount}} / {{diceCount}} hits</span>
+    <span class="formula">{{formula}} - Roll For 
+      {{#if success}}
+        Success
+      {{else}}
+        Color
+        {{#if hand}}
+         (Hand)
+        {{/if}}
+      {{/if}}
+    </span>
   </header>
 
+  {{#if success}}
   {{#if successColors.length}}
+  <span class="success-count">{{successCount}} / {{diceCount}} hits</span>
   <div class="target-colors">
     Target colors:
     {{#each successColors}}
-      <span class="swatch small color-{{this}}" title="{{this}}"></span>
+      <img class='color-image' src='systems/palette/assets/icon-{{this}}.svg' height="24" width="24"/>
     {{/each}}
   </div>
   {{/if}}
+  {{/if}}
 
+  <span class="color-dice-results">Results</span>
   <div class="color-dice-faces">
     {{#each faces}}
-    <span class="face-label">{{localize this.label}}</span>
+      <img class='color-image' src='systems/palette/assets/icon-{{this.color}}.svg' height="24" width="24"/>
     {{/each}}
   </div>
+
+  {{#if hand}}
+  <button class = "hand-button">Add To Hand</button>
+  {{/if}}
 </div>
 

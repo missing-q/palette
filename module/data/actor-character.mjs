@@ -30,11 +30,6 @@ export default class PaletteCharacter extends PaletteActorBase {
       money: new fields.NumberField({ ...requiredInteger, initial: 0 }),
     });
 
-    // add hand
-    schema.hand = new fields.ArrayField(
-      new fields.StringField()
-    );
-
     return schema;
   }
 

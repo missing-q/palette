@@ -55,4 +55,44 @@
         </div>
       </li>
     {{/each}}
+  </ol>
+
+  {{! Hand}}
+  {{#unless system.hand.locked}}
+    <ol class='items-list'>
+    <li class='item flexrow items-header'>
+      <div class='item-name'>{{localize 'PALETTE.Actor.base.FIELDS.hand.label'}}</div>
+      <div class='item-controls'>
+        <select class = "hand-select">
+          {{selectOptions config.colorMap selected="selected" localize=true}}
+        </select>
+        <a 
+          class='item-control item-create'
+          data-action='addHand'
+        >
+          <i class='fas fa-plus'></i>
+        </a>
+      </div>
+    </li>
+    {{#each system.hand.value}}
+      <li
+        class='item flexrow draggable'
+      >
+        <div class='item-name'>
+          <img class='item-image' src='systems/palette/assets/icon-{{this}}.svg' height="24" width="24"/>
+        </div>
+        <div class='item-controls'>
+          <a
+            class='item-control item-delete'
+            data-action='deleteHand'
+            data-index='{{@index}}'
+          >
+            <i class='fas fa-trash'></i>
+          </a>
+        </div>
+      </li>
+    {{/each}}
+  </ol>
+  {{/unless}}
+
 </section>

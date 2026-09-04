@@ -23,8 +23,12 @@ export default class PaletteActorBase extends foundry.abstract
     schema.palette =  new fields.SchemaField({
       locked: new fields.BooleanField({ initial: true }), // this attribute determines if the palette size is restricted to 3 hues; locked for PCs and unlocked for NPCs
     });
-    
-    schema.biography = new fields.HTMLField();
+
+    // add hand
+    schema.hand = new fields.SchemaField({
+      locked: new fields.BooleanField({ initial: false }), // determines if character shouuld have access to hand abilities; locked for minion npcs and unlocked for everyone else
+      value: new fields.ArrayField( new fields.StringField()),
+    });
 
     return schema;
   }

@@ -33,7 +33,8 @@
             "jump": {"label": "Jump"}
           },
           "tier": {"label": "Tier"},
-          "dn": {"label": "DN"}
+          "dn": {"label": "DN"},
+          "hand": {"label": "Hand"}
         }
       },
       "Character": {
