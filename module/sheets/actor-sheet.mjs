@@ -14,7 +14,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     classes: ['palette', 'actor'],
     position: {
       width: 600,
-      height: 600,
+      height: 700,
     },
     actions: {
       onEditImage: this._onEditImage,
@@ -115,6 +115,10 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     context.trackerchoices = {}
     for (const [i, value] of Object.entries(CONFIG.PALETTE.colors)) {
       context.trackerchoices[`${i}`] = ""
+    }
+    context.valuechoices = {}
+    for (let i = 0; i < 10; i++){
+      context.valuechoices[`${i}`] = ""
     }
 
     return context;
@@ -288,6 +292,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     // Foundry comes with a large number of utility classes, e.g. SearchFilter
     // That you may want to implement yourself.
   }
+
 
   /**************
    *

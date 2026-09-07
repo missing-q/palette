@@ -109,6 +109,64 @@
         
       </div>
 
+      {{#if (eq actor.type 'character')}} {{! only characters should have these}}
+
+      {{! Chroma}}
+      <div class='resource flex-group-center'>
+        <div class='resource-content flexrow flex-center flex-between'>
+          <label for='system.attributes.tier' class='resource-label'>
+            {{localize 'PALETTE.Actor.Character.FIELDS.points.chroma.label'}}
+          </label>
+        </div>
+
+        <div class='resource-content flexrow flex-center flex-between'>
+          <input
+            type='text'
+            name='system.points.chroma'
+            value='{{system.points.chroma}}'
+            data-dtype='Number'
+          />
+        </div>
+      </div>
+
+      {{! Trauma}}
+      <div class='resource flex-group-center'>
+        <div class='resource-content flexrow flex-center flex-between'>
+          <label for='system.attributes.tier' class='resource-label'>
+            {{localize 'PALETTE.Actor.Character.FIELDS.points.trauma.label'}}
+          </label>
+        </div>
+
+        <div class='resource-content flexrow flex-center flex-between'>
+          <input
+            type='text'
+            name='system.points.trauma'
+            value='{{system.points.trauma}}'
+            data-dtype='Number'
+          />
+        </div>
+      </div>
+
+      {{! Money}}
+      <div class='resource flex-group-center'>
+        <div class='resource-content flexrow flex-center flex-between'>
+          <label for='system.attributes.tier' class='resource-label'>
+            {{localize 'PALETTE.Actor.Character.FIELDS.points.money.label'}}
+          </label>
+        </div>
+
+        <div class='resource-content flexrow flex-center flex-between'>
+          <input
+            type='text'
+            name='system.points.money'
+            value='{{system.points.money}}'
+            data-dtype='Number'
+          />
+        </div>
+      </div>
+
+        {{/if}}
+
 
 
 

@@ -14,6 +14,17 @@
   --chromatic-green: #51ce51;
   --chromatic-yellow: #ebd934;
   --chromatic-taint: #421e42;
+
+  --rainbow-0: #ff595e;
+  --rainbow-1: #ff924c;
+  --rainbow-2: #ffca3a;
+  --rainbow-3: #c5ca30;
+  --rainbow-4: #8ac926;
+  --rainbow-5: #36949d;
+  --rainbow-6: #1982c4;
+  --rainbow-7: #4151ab;
+  --rainbow-8: #6a4c93;
+  --rainbow-9: #944d89;
 }
 
 .theme-dark {
@@ -43,3 +54,14 @@ $p-blue: var(--chromatic-blue);
 $p-green: var(--chromatic-green);
 $p-yellow: var(--chromatic-yellow);
 $p-taint: var(--chromatic-taint);
+
+$r-0: var(--rainbow-0);
+$r-1: var(--rainbow-1);
+$r-2: var(--rainbow-2);
+$r-3: var(--rainbow-3);
+$r-4: var(--rainbow-4);
+$r-5: var(--rainbow-5);
+$r-6: var(--rainbow-6);
+$r-7: var(--rainbow-7);
+$r-8: var(--rainbow-8);
+$r-9: var(--rainbow-9);

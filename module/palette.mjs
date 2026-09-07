@@ -113,17 +113,36 @@ Hooks.once('ready', function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on('hotbarDrop', (bar, data, slot) => createDocMacro(data, slot));
 
-  /** HTML Hooks */
-  
-  Hooks.on("renderChatMessageHTML", (message, html, context={}) => {
-    // HOOK: Add to Hand 
-    if (html.querySelector(".hand-button")){
-      html.querySelector(".hand-button").addEventListener("click", () => {
-        addToHand(message)
-      });
-    }
+  /** Render Actor Sheet Hook */
+
+  Hooks.on('renderActorSheetV2', (app, html, context) => {
+    //Chroma overflow buttons
+    html.querySelectorAll('.chroma-overflow').forEach(el => {
+      el.addEventListener('click', ev => {
+        let color = ev.target.dataset.color
+        let actor = context.actor;
+        let data = {
+          "system.points.chroma": actor.system.points.chroma + 1
+        }
+        data[`system.wheel.${color}.value`] = "3"
+        console.log(data)
+        actor.update(data) //reset to default
+      })
+    })
   });
+
+  /** HTML Hooks */
+  Hooks.on('renderChatMessageHTML', (message, html, context={}) => {
+    //Add to Hand
+    html.querySelectorAll('hand-button').forEach(el => {
+      el.addEventListener('click', ev => { 
+        addToHand(message)
+      })
+    });
+  })
+  
 });
+
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */

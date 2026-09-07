@@ -27,6 +27,7 @@
     place-content: center end; /* text at 3 o'clock pre rotation */
     padding: .5em; /* space from circle edge to text */
     border-radius: 50%; /* turn square into disc */
+    z-index:1;
     transform: /* need rotation before translation */
         rotate(calc(var(--ca)));
     clip-path: 
@@ -56,6 +57,7 @@
     transition: .3s;
     counter-reset: i calc(var(--i) + 1);
     display: grid;
+    z-index:0;
 }
 
 .overflow button {
@@ -96,25 +98,25 @@
 .yellow {background-color: $p-yellow;}
 .none {background-color: transparent;}
 
-.color input {
+.trackers input {
   appearance: auto;
   width: 1rem;
   aspect-ratio: 1;
   z-index: 10;
 }
 //overriding default foundry checkbox styling
-.color input[type="radio"]:checked::before {
+.trackers input[type="radio"]:checked::before {
     content: none !important;
 }
-.color input[type="radio"]:checked::after {
-    content: none !important;
-}
-
-.color input[type="radio"]::before {
+.trackers input[type="radio"]:checked::after {
     content: none !important;
 }
 
-.color input[type="radio"]::after {
+.trackers input[type="radio"]::before {
+    content: none !important;
+}
+
+.trackers input[type="radio"]::after {
     content: none !important;
 }
 
@@ -123,3 +125,23 @@
   position: absolute;
   left: 26.5em;
 }
+
+.value-tracker {
+  align-items: center;
+  justify-content: center;
+}
+.value-tracker label {
+  margin-top:.5rem;
+  margin-bottom: .5rem;
+}
+
+.value-tracker label:nth-child(1) input {accent-color:$r-0}
+.value-tracker label:nth-child(2) input {accent-color:$r-1}
+.value-tracker label:nth-child(3) input {accent-color:$r-2}
+.value-tracker label:nth-child(4) input {accent-color:$r-3}
+.value-tracker label:nth-child(5) input {accent-color:$r-4}
+.value-tracker label:nth-child(6) input {accent-color:$r-5}
+.value-tracker label:nth-child(7) input {accent-color:$r-6}
+.value-tracker label:nth-child(8) input {accent-color:$r-7}
+.value-tracker label:nth-child(9) input {accent-color:$r-8}
+.value-tracker label:nth-child(10) input {accent-color:$r-9}

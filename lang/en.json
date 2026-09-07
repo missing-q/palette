@@ -39,7 +39,13 @@
       },
       "Character": {
         "FIELDS": {
-          "attributes.level.value": {"label": "Level"}
+          "attributes.level.value": {"label": "Level"},
+          "points": {
+            "chroma": {"label": "Chroma"},
+            "trauma": {"label": "Trauma"},
+            "money": {"label": "Money"},
+            "tracker": {"label": "Value Tracker"}
+          }
         }
       },
       "NPC": {

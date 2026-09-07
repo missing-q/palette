@@ -4,8 +4,9 @@
   data-group='primary'
   data-tab='trackers'
 >
+<div class = "grid grid-3col">
     <!-- Funny color wheel stuff -->
-    <div class = "wheel" style = "--n: 6" >
+    <div class = "wheel grid-span-2" style = "--n: 6" >
         {{#each config.colors}}
         <div class = "color {{this}}" style = "--i: {{@index}}">
         <div class = "wrapper flexrow">
@@ -17,10 +18,14 @@
         </div>
         
         <div class = "overflow" style = "--i: {{@index}}">
-        <button></button>
+        <button class = "chroma-overflow" data-color = "{{this}}" type = "button"></button>
         </div>
         {{/each}}
     </div>
+    <div class = "value-tracker flexcol">
+        {{radioBoxes "system.points.tracker" valuechoices checked=system.points.tracker}}
+    </div>
     
+</div>
 </section>
 
