@@ -43,6 +43,7 @@
           "points": {
             "chroma": {"label": "Chroma"},
             "trauma": {"label": "Trauma"},
+            "strain": {"label": "Strain"},
             "money": {"label": "Money"},
             "tracker": {"label": "Value Tracker"}
           }

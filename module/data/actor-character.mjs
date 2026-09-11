@@ -27,42 +27,12 @@ export default class PaletteCharacter extends PaletteActorBase {
     schema.points = new fields.SchemaField({
       chroma: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       trauma: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      strain: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       money: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       tracker: new fields.StringField({ ...requiredInteger, initial: "0" }), // value tracker
     });
 
     return schema;
-  }
-
-  prepareDerivedData() {
-
-    //calculate base stress based on tier
-    this.attributes.stress.base = 20 + (this.attributes.tier*20)
-
-    //Calculate tic and surge from base stress
-    let stress = this.attributes.stress.base
-    this.attributes.stress.tic = Math.round(stress/10)
-    this.attributes.stress.surge = Math.round(stress/4)
-
-    //max stress - strain is an active effect so that comes later
-    this.attributes.stress.max = this.attributes.stress.base
-
-  }
-
-  getRollData() {
-    const data = {};
-
-    // Copy the ability scores to the top level, so that rolls can use
-    // formulas like `@str.mod + 4`.
-    //if (this.abilities) {
-    //  for (let [k, v] of Object.entries(this.abilities)) {
-    //    data[k] = foundry.utils.deepClone(v);
-    //  }
-    //}
-
-    data.tier = this.attributes.tier;
-
-    return data;
   }
 
     /**
@@ -105,7 +75,8 @@ export default class PaletteCharacter extends PaletteActorBase {
    */
   async _onUpdate(changed, options, userId) {
     await super._onUpdate(changed,options,userId);
-    if (changed.system && changed.system.wheel){ 
+    //handle tracker changes
+    if (changed?.system?.wheel){ 
       this.updateTracker(changed.system.wheel)
       console.log(changed.system.wheel)
     }

@@ -33,3 +33,10 @@ PALETTE.colorMap = //map values to labels
   green: 'PALETTE.Colors.Green',
   yellow: 'PALETTE.Colors.Yellow',
 }
+
+PALETTE.statusEffects = {
+  shock: {},
+  wound: {},
+  mortality: {},
+  taint: {}
+}

@@ -35,7 +35,7 @@
         <div class='resource-content flexrow flex-center flex-between'>
           <input
             type='text'
-            name='system.stress.value'
+            name='system.attributes.stress.value'
             value='{{system.attributes.stress.value}}'
             data-dtype='Number'
           />
@@ -129,12 +129,17 @@
         </div>
       </div>
 
-      {{! Trauma}}
+      {{! Trauma and strain}}
       <div class='resource flex-group-center'>
         <div class='resource-content flexrow flex-center flex-between'>
           <label for='system.attributes.tier' class='resource-label'>
             {{localize 'PALETTE.Actor.Character.FIELDS.points.trauma.label'}}
           </label>
+
+          <label for='system.attributes.tier' class='resource-label'>
+            {{localize 'PALETTE.Actor.Character.FIELDS.points.strain.label'}}
+          </label>
+
         </div>
 
         <div class='resource-content flexrow flex-center flex-between'>
@@ -144,7 +149,17 @@
             value='{{system.points.trauma}}'
             data-dtype='Number'
           />
+
+          <input
+            type='text'
+            name='system.points.strain'
+            value='{{system.points.strain}}'
+            data-dtype='Number'
+          />
         </div>
+        
+
+
       </div>
 
       {{! Money}}
