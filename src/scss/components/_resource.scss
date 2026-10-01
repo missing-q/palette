@@ -117,6 +117,7 @@
 .value-tracker {
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 .value-tracker label {
   margin-top:.5rem;
@@ -133,3 +134,7 @@
 .value-tracker label:nth-child(8) input {accent-color:$r-7}
 .value-tracker label:nth-child(9) input {accent-color:$r-8}
 .value-tracker label:nth-child(10) input {accent-color:$r-9}
+
+.trackers fieldset {
+  border: none;
+}

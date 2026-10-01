@@ -415,6 +415,7 @@
 .palette .value-tracker {
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 .palette .value-tracker label {
   margin-top: 0.5rem;
@@ -449,6 +450,9 @@
 }
 .palette .value-tracker label:nth-child(10) input {
   accent-color: var(--rainbow-9);
+}
+.palette .trackers fieldset {
+  border: none;
 }
 .palette .items-header {
   height: 28px;
