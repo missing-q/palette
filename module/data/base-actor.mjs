@@ -33,6 +33,17 @@ export default class PaletteActorBase extends foundry.abstract
     return schema;
   }
 
+    /** @inheritdoc */
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+
+    // Configure prototype token settings
+    const prototypeToken = {
+      sight: { enabled: true }, actorLink: true
+    }
+    this.parent.updateSource({prototypeToken});
+  }
+
     prepareBaseData(){
     //calculate base stress based on tier
     this.attributes.stress.base = 20 + (this.attributes.tier*20)

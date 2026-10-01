@@ -41,7 +41,7 @@ export default class PaletteCharacter extends PaletteActorBase {
    * @protected
    * @override
    */
-  updateTracker(changed){
+  async updateTracker(changed){
     //modify value tracker
     let tracker = Number(this.points.tracker) //because object keys can't be numbers we have to do this silly song and dance
     for (let i in changed){ 
@@ -61,6 +61,16 @@ export default class PaletteCharacter extends PaletteActorBase {
       if (obj.value == '0'){
         //add taint active effect for that color
         console.log("taint condition")
+        const effect = await ActiveEffect.fromStatusEffect('taint');
+        //get hex color value for current color
+        const style = window.getComputedStyle(document.body)
+        const color = style.getPropertyValue(`--chromatic-${key}`)
+        effect.updateSource({ tint: color || "#ffffff" });
+        //create effect
+        console.log (effect)
+        console.log(this)
+        await this.parent.createEmbeddedDocuments("ActiveEffect", [effect]);
+
       }
     }
   }
@@ -78,7 +88,7 @@ export default class PaletteCharacter extends PaletteActorBase {
     //handle tracker changes
     if (changed?.system?.wheel){ 
       this.updateTracker(changed.system.wheel)
-      console.log(changed.system.wheel)
+      //console.log(changed.system.wheel)
     }
 
   }

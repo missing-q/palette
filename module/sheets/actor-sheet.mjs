@@ -77,7 +77,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     // Control which parts show based on document subtype
     switch (this.document.type) {
       case 'character':
-        options.parts.push('palette','trackers', 'biography', 'gear', 'spells', 'effects');
+        options.parts.push('palette','trackers', 'biography', 'gear', 'effects');
         break;
       case 'npc':
         options.parts.push('palette', 'biography', 'gear', 'effects');

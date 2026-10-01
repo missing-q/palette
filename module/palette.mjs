@@ -72,6 +72,7 @@ Hooks.once('init', function () {
   // but will still apply to the Actor from within the Item
   // if the transfer property on the Active Effect is true.
   CONFIG.ActiveEffect.legacyTransferral = false;
+  CONFIG.statusEffects = PALETTE.statusEffects;
 
   // Register sheet application classes
   collections.Actors.unregisterSheet('core', sheets.ActorSheet);
@@ -143,6 +144,25 @@ Hooks.once('ready', function () {
   
 });
 
+/* -------------------------------------------- */
+/*  Localization Hook                           */
+/* -------------------------------------------- */
+
+Hooks.once('i18nInit', () => {
+  //adds in localized descriptions for statuses
+  for (const [key, obj] of Object.entries(CONFIG.statusEffects)) {
+    const base = `PALETTE.Statuses.${key}`;
+    const benefit = game.i18n.localize(`${base}.benefit`);
+    const consequence = game.i18n.localize(`${base}.consequence`);
+    const heal = game.i18n.localize(`${base}.heal`);
+
+    obj.description = `
+      <b>${game.i18n.localize('PALETTE.Statuses.labels.benefit')}:</b> ${benefit}<br>
+      <b>${game.i18n.localize('PALETTE.Statuses.labels.consequence')}:</b> ${consequence}<br>
+      <b>${game.i18n.localize('PALETTE.Statuses.labels.heal')}:</b> ${heal}
+    `;
+  }
+});
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */

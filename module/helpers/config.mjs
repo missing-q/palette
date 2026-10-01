@@ -35,8 +35,44 @@ PALETTE.colorMap = //map values to labels
 }
 
 PALETTE.statusEffects = {
-  shock: {},
-  wound: {},
-  mortality: {},
-  taint: {}
+  shock: {
+    name: 'PALETTE.Statuses.shock.label',
+    id: 'shock',
+    img: 'systems/palette/assets/shock.svg',
+    changes: [
+      { key: "system.attributes.stress.max", mode: 'add', value: '-@surge' }
+    ]
+  },
+  wound: {
+    name: 'PALETTE.Statuses.wound.label',
+    id: 'wound',
+    img: 'systems/palette/assets/wound.svg',
+    changes: [
+      { }
+    ]
+  },
+  mortality: {
+    name: 'PALETTE.Statuses.mortality.label',
+    id: 'mortality',
+    img: 'systems/palette/assets/mortality.svg',
+    changes: [
+      { }
+    ]
+  },
+  taint: {
+    name: 'PALETTE.Statuses.taint.label',
+    id: 'taint',
+    img: 'systems/palette/assets/taint.svg',
+    changes: [
+      { }
+    ]
+  },
+  broken: {
+    name: 'PALETTE.Statuses.broken.label',
+    id: 'broken',
+    img: 'systems/palette/assets/broken.svg',
+    changes: [
+      { }
+    ]
+  }
 }

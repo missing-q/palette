@@ -69,7 +69,7 @@
           "dieSize": {"label": "Die Size"},
           "rollMod": {"label": "Roll Modifier"},
           "quantity": {"label": "Quantity"},
-          "weight": {"label": "Weight"}
+          "weight": {"label": "Bulk"}
         }
       },
       "Spell": {
@@ -94,6 +94,43 @@
       "Blue": "Blue",
       "Yellow": "Yellow",
       "Green": "Green"
+    },
+    "Statuses": {
+      "labels": {
+        "benefit": "Voluntary Benefit",
+        "consequence": "Consequence",
+        "heal": "Heal"
+      },
+      "shock": {
+        "label": "Shock",
+        "benefit": "Add 1 Surge to current Stress, regardless of Broken. Negate up to a Surge of Stress damage from the source of this Injury",
+        "consequence": "For every Shock you have, decrease your Max Stress by 1 Surge.",
+        "heal": " Recover 1 Shock after 10 full True Rests, or receiving 2*Tier Money of medical treatment."
+      },
+      "wound": {
+        "label": "Wound",
+        "benefit": "Add 2 Surges to current Stress, remove Broken, and Paint yourself; add 1 dice to all rolls made while you maintain your chosen Paint. Negate up to 2 Surges worth of Stress damage from the source of this Injury",
+        "consequence": "Select an unwounded Hue to become wounded. Whenever you roll a result of a color matching the wounded Hue, discard it or take 1 Tic of damage (Strain, or a color damage of choice if not in an encounter) and decrease the degree of proficiency on all Skills of that color by 1 category if able.",
+        "heal": "You will never recover without treatment. Recovering from a Wound with treatment takes 10*Tier Money of medical treatment."
+      },
+      "mortality": {
+        "label": "Mortality",
+        "benefit": "",
+        "consequence": "",
+        "heal": ""
+      },
+      "taint": {
+        "label": "Taint ",
+        "benefit": "",
+        "consequence": "",
+        "heal": ""
+      },
+      "broken": {
+        "label": "Broken ",
+        "benefit": "",
+        "consequence": "",
+        "heal": ""
+      }
     }
   },
   "TYPES": {
