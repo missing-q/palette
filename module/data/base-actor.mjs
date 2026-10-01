@@ -39,7 +39,7 @@ export default class PaletteActorBase extends foundry.abstract
 
     // Configure prototype token settings
     const prototypeToken = {
-      sight: { enabled: true }, actorLink: true
+      actorLink: true
     }
     this.parent.updateSource({prototypeToken});
   }
