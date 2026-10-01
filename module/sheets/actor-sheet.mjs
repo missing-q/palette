@@ -113,7 +113,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
 
     // Add color trackers to context
     context.trackerchoices = {}
-    for (const [i, value] of Object.entries(CONFIG.PALETTE.colors)) {
+    for (let i = 0; i <= 6; i++){
       context.trackerchoices[`${i}`] = ""
     }
     context.valuechoices = {}

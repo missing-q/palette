@@ -50,7 +50,7 @@
       "thumbnail": "systems/palette/assets/anvil-impact.png"
     }
   ],
-  "version": "3.0.0",
+  "version": "3.0.1",
   "compatibility": {
     "minimum": "14.0",
     "verified": "14.0"

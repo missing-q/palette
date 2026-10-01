@@ -10,6 +10,7 @@
         {{#each config.colors}}
         <div class = "color {{this}}" style = "--i: {{@index}}">
         <div class = "wrapper flexrow">
+            <button class = "chroma-overflow" data-color = "{{this}}" type = "button"></button>
             {{radioBoxes (concat "system.wheel." this ".value") ../trackerchoices checked=(lookup (lookup ../system.wheel this) "value")}}
             
         </div>

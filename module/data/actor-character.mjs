@@ -70,9 +70,48 @@ export default class PaletteCharacter extends PaletteActorBase {
         console.log (effect)
         console.log(this)
         await this.parent.createEmbeddedDocuments("ActiveEffect", [effect]);
-
+        // reset value
+        this.wheel[key].value = "3"
+        console.log(this)
+        //let data = {}
+        //data[`system.wheel.${color}.value`] = "3"
+        //this.parent.update(data) //reset to default
+        // this PROBABLY shouldn't result in an infinite loop... 
       }
     }
+  }
+
+    /**
+   * Actions before update of the Actor Document..
+   * @param {object} changed      The differential data that was changed relative to the documents prior values
+   * @param {object} options      Additional options which modify the update request
+   * @param {object} userId       The id of the User requesting the document update
+   * @protected
+   * @override
+   */
+  async _preUpdate(changed, options, user) {
+    const allowed = await super._preUpdate(changed, options, user);
+    if (allowed === false) return false; //bail if not allowed
+
+    const wheelChanges = foundry.utils.getProperty(changed, "system.wheel");
+    if (wheelChanges){
+
+      const resetKeys = [];
+      //console.log(wheelChanges)
+
+      //if we're doing this on the sheet this should only be once, 
+      // but add in support for multiple changes anyway
+      for (const [key, obj] of Object.entries(wheelChanges)) {
+        if (Number(obj?.value) === 0) {
+          foundry.utils.setProperty(changed, `system.wheel.${key}.value`, "3");
+          resetKeys.push(key);
+        }
+      }
+
+      // stash colors for taint effect later
+      if (resetKeys.length) options.taintKeys = resetKeys;
+    }
+
   }
 
   /**
@@ -84,12 +123,38 @@ export default class PaletteCharacter extends PaletteActorBase {
    * @override
    */
   async _onUpdate(changed, options, userId) {
-    await super._onUpdate(changed,options,userId);
-    //handle tracker changes
-    if (changed?.system?.wheel){ 
-      this.updateTracker(changed.system.wheel)
-      //console.log(changed.system.wheel)
-    }
+    await super._onUpdate(changed, options, userId);
 
+    if (game.user.id !== userId) return;
+
+    const wheelChanges = foundry.utils.getProperty(changed, "system.wheel");
+    if (wheelChanges){
+      console.log(wheelChanges)
+      //tracker stuff
+      let tracker = Number(this.points.tracker); //because object keys can't be numbers we have to do this silly song and dance
+      let chroma = this.points.chroma;
+      //unfortunately we have to double loop across pre and on lmao
+      for (const [key, obj] of Object.entries(wheelChanges)) {
+        tracker++;
+      }
+      //handle tracker overflow
+      if (tracker >= 10) {
+        chroma += Math.floor(tracker / 10);
+        tracker = tracker % 10;
+      }
+      //set values
+      this.points.tracker = String(tracker)
+      this.points.chroma = chroma
+
+      //handle taint ae
+      for (const key of options.taintKeys ?? []) {
+        const effect = await ActiveEffect.fromStatusEffect('taint');
+        const style = getComputedStyle(document.body);
+        const color = style.getPropertyValue(`--chromatic-${key}`);
+        effect.updateSource({ tint: color || "#ffffff" });
+        await this.parent.createEmbeddedDocuments("ActiveEffect", [effect]);
+      }
+
+    }
   }
 }
