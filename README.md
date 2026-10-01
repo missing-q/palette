@@ -9,8 +9,6 @@ This is a work-in-progress version of the Palette system for foundry VTT.
 - `/rc` with the `h` argument (ex: `/rc 3h` ) will **Roll for Hand**. The results include a "Add to Hand" button that, when clicked, will add the results to the selected token's Hand.
 
 # Todo
-- Lock button for tracker
 - Add trackable actions/reactions on token GUI (below)
 - Support for stacking statuses from status GUI + dialog prompt
 - Show and delete hand from token GUI (above)
-- Set default colors upon creation so it's not an invalid blank hue
