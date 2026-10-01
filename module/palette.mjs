@@ -121,16 +121,34 @@ Hooks.once('ready', function () {
     //Chroma overflow buttons
     html.querySelectorAll('.chroma-overflow').forEach(el => {
       el.addEventListener('click', ev => {
-        let color = ev.target.dataset.color
+        var color = ev.target.dataset.color
         let actor = context.actor;
         let data = {
           "system.points.chroma": actor.system.points.chroma + 1
         }
-        data[`system.wheel.${color}.value`] = "3"
+        data[`system.wheel.${color}.value`] = "2"
         console.log(data)
         actor.update(data) //reset to default
       })
-    })
+    });
+    //Taint underflow buttons
+    html.querySelectorAll('.taint-underflow').forEach(el => {
+      el.addEventListener('click', async ev => {
+        let color = ev.target.dataset.color
+        let actor = context.actor;
+        let data = {}
+        data[`system.wheel.${color}.value`] = "2" //reset value
+        console.log(data)
+        actor.update(data) //reset to default
+
+        //create taint ae
+        const effect = await ActiveEffect.fromStatusEffect('taint');
+        const style = getComputedStyle(document.body);
+        const hex = style.getPropertyValue(`--chromatic-${color}`);
+        effect.updateSource({ tint: hex || "#ffffff", });
+        await actor.createEmbeddedDocuments("ActiveEffect", [effect]);
+      })
+    });
   });
 
   /** HTML Hooks */

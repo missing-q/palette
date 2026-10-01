@@ -4,17 +4,22 @@
   data-group='primary'
   data-tab='trackers'
 >
-<fieldset class = "wheel-fieldset">
 <div class = "grid grid-3col">
     <!-- Funny color wheel stuff -->
     <div class = "wheel grid-span-2" style = "--n: 6" >
         {{#each config.colors}}
         <div class = "color {{this}}" style = "--i: {{@index}}">
         <div class = "wrapper flexrow">
+            <input class = "taint-underflow" data-color = "{{this}}" type = "radio">
             {{radioBoxes (concat "system.wheel." this ".value") ../trackerchoices checked=(lookup (lookup ../system.wheel this) "value")}}
             
         </div>
         <div class = "zone taint"></div>
+        <div class = "zone reset"></div>
+        </div>
+        
+        <div class = "overflow" style = "--i: {{@index}}">
+        <input class = "chroma-overflow" data-color = "{{this}}" type = "radio">
         </div>
         {{/each}}
     </div>
@@ -22,7 +27,6 @@
         {{radioBoxes "system.points.tracker" valuechoices checked=system.points.tracker}}
     </div>
     
-</div>
 </div>
 </section>
 
