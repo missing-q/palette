@@ -111,6 +111,7 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 /* -------------------------------------------- */
 
 Hooks.once('ready', function () {
+  
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on('hotbarDrop', (bar, data, slot) => createDocMacro(data, slot));
 
@@ -135,7 +136,7 @@ Hooks.once('ready', function () {
   /** HTML Hooks */
   Hooks.on('renderChatMessageHTML', (message, html, context={}) => {
     //Add to Hand
-    html.querySelectorAll('hand-button').forEach(el => {
+    html.querySelectorAll('.hand-button').forEach(el => {
       el.addEventListener('click', ev => { 
         addToHand(message)
       })
