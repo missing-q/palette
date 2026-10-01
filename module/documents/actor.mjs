@@ -10,6 +10,9 @@ export class PaletteActor extends Actor {
     let newItem = {
       "name": "New Hue",
       "type": "hue",
+      "system": {
+        "color":"white"
+      }
     }
     for (let i = 0; i < 3; i++){ //create three hue items
       this.createEmbeddedDocuments("Item", [newItem]) 

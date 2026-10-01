@@ -2,6 +2,8 @@ import { prepareActiveEffectCategories } from '../helpers/effects.mjs';
 
 const { api, sheets } = foundry.applications;
 
+
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheetV2}
@@ -9,6 +11,7 @@ const { api, sheets } = foundry.applications;
 export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
   sheets.ActorSheetV2
 ) {
+  #wheelUnlocked = false;
   /** @override */
   static DEFAULT_OPTIONS = {
     classes: ['palette', 'actor'],
@@ -25,6 +28,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
       roll: this._onRoll,
       addHand: this._addHand,
       deleteHand: this._deleteHand,
+      toggleWheelLock: this._onToggleWheelLock
     },
     // Custom property that's merged into `this.options`
     // dragDrop: [{ dragSelector: '.draggable', dropSelector: null }],
@@ -288,6 +292,7 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
   async _onRender(context, options) {
     await super._onRender(context, options);
     this.#disableOverrides();
+    this._applyWheelLockState();
     // You may want to add other special handling here
     // Foundry comes with a large number of utility classes, e.g. SearchFilter
     // That you may want to implement yourself.
@@ -465,6 +470,20 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
     this.actor.update({"system.hand.value": data})
   }
 
+   /**
+   * Handles toggling wheel lock status.
+   *
+   * @this PaletteActorSheet
+   * @param {PointerEvent} event   The originating click event
+   * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+   * @protected
+   */
+  static async _onToggleWheelLock(event, target) {
+    this.#wheelUnlocked = !this.#wheelUnlocked;
+    this._applyWheelLockState();
+  }
+
+
   /** Helper Functions */
 
   /**
@@ -484,6 +503,15 @@ export class PaletteActorSheet extends api.HandlebarsApplicationMixin(
           : this.actor.items.get(docRow?.dataset.parentId);
       return parent.effects.get(docRow?.dataset.effectId);
     } else return console.warn('Could not find document class');
+  }
+
+  /**
+   * Helper function to apply wheel lock state
+   */
+  _applyWheelLockState() {
+    const fieldset = this.element.querySelector('.wheel-fieldset');
+    if (fieldset) fieldset.disabled = !this.#wheelUnlocked;
+    this.element.querySelector('.wheel-lock-toggle')?.classList.toggle('unlocked', this.#wheelUnlocked);
   }
 
   /***************
