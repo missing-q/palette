@@ -67,8 +67,8 @@
   "packs": [],
   "packFolders": [],
   "socket": false,
-  "manifest": "https://github.com/missing-q/palette/blob/main/system.json",
-  "download": "https://github.com/missing-q/palette/archive/refs/heads/main.zip",
+  "manifest": "https://raw.githubusercontent.com/missing-q/palette/refs/heads/main/system.json",
+  "download": "https://codeload.github.com/missing-q/palette/zip/main",
   "background": "systems/palette/assets/anvil-impact.png",
   "grid": {
     "type": 1,
