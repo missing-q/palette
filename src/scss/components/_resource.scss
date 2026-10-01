@@ -60,16 +60,10 @@
     z-index:0;
 }
 
-.overflow button {
+.overflow input {
   position: relative;
-  left: 1.5rem;
-  width: 1.1rem;
-  height: 1.1rem;
-  aspect-ratio: 1;
-  border-radius: 100%;
-  padding: 0 0;
-  min-height: unset;
-  border: solid 2px grey;
+  left: 1.6rem;
+  z-index: 999 !important;
 }
 
 .zone {
@@ -118,12 +112,6 @@
 
 .trackers input[type="radio"]::after {
     content: none !important;
-}
-
-.wrapper label:nth-child(7) {
-  background-color: orangered !important;
-  position: absolute;
-  left: 26.5em;
 }
 
 .value-tracker {
