@@ -7,13 +7,14 @@
   --palette-c-black: #000000;
   --palette-c-groove: #eeede0;
 
-  --chromatic-white: #e1e1df;
-  --chromatic-black: #353535;
-  --chromatic-red: #d92644;
-  --chromatic-blue: #2134de;
-  --chromatic-green: #51ce51;
-  --chromatic-yellow: #ebd934;
+  --chromatic-white: #fdfdfd;
+  --chromatic-black: #23212b;
+  --chromatic-red: #da2156;
+  --chromatic-blue: #3954d7;
+  --chromatic-green: #247955;
+  --chromatic-yellow: #ffff1d;
   --chromatic-taint: #421e42;
+  --chromatic-chroma: #f675c1;
 
   --rainbow-0: #ff595e;
   --rainbow-1: #ff924c;
@@ -54,6 +55,7 @@ $p-blue: var(--chromatic-blue);
 $p-green: var(--chromatic-green);
 $p-yellow: var(--chromatic-yellow);
 $p-taint: var(--chromatic-taint);
+$p-chroma: var(--chromatic-chroma);
 
 $r-0: var(--rainbow-0);
 $r-1: var(--rainbow-1);

@@ -9,3 +9,21 @@
     align-items: center;
     justify-content: center;
 }
+
+.color-success {
+    outline: $p-chroma 2px solid;
+}
+.color-icon-wrapper {
+    width: 2rem;
+    height: 2rem;
+    margin: .2rem;
+}
+
+.color-icon {
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+}

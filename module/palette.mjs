@@ -6,6 +6,7 @@ import { PaletteActorSheet } from './sheets/actor-sheet.mjs';
 import { PaletteItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { PALETTE } from './helpers/config.mjs';
+import { PaletteHbsHelpers } from './helpers/handlebars.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
 //import color dice and command
@@ -94,6 +95,8 @@ Hooks.once('init', function () {
       rgx: /^\/rc(?:\s+(\d+)(h?|c?))?\s*$/i, //fuck regex all my homies hate regex
       fn: handleColorCommand,
   };
+  //register handlebars helpers
+  PaletteHbsHelpers.init();
 
 });
 

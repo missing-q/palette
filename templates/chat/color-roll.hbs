@@ -18,7 +18,7 @@
   <div class="target-colors">
     Target colors:
     {{#each successColors}}
-      <img class='color-image' src='systems/palette/assets/icon-{{this}}.svg' height="24" width="24"/>
+      <span class='color-icon' style="{{colormask this}}"> </span>
     {{/each}}
   </div>
   {{/if}}
@@ -27,7 +27,9 @@
   <span class="color-dice-results">Results</span>
   <div class="color-dice-faces">
     {{#each faces}}
-      <img class='color-image' src='systems/palette/assets/icon-{{this.color}}.svg' height="24" width="24"/>
+    <div class = "color-icon-wrapper {{#if this.success}}color-success{{/if}}">
+    <span class='color-icon' style="{{colormask this.color}}"> </span>
+    </div>
     {{/each}}
   </div>
 
