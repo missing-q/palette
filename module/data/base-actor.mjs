@@ -30,6 +30,20 @@ export default class PaletteActorBase extends foundry.abstract
       value: new fields.ArrayField( new fields.StringField()),
     });
 
+    //action and reaction points
+    schema.actions = new fields.SchemaField({
+      action: schema.actions = new fields.SchemaField({
+        max: new fields.NumberField({ ...requiredInteger, initial: 2 }),
+        points: new fields.ArrayField( new fields.BooleanField()),
+        temp: new fields.ArrayField( new fields.BooleanField()), //array for temp markers
+      }),
+      reaction: schema.actions = new fields.SchemaField({
+        max: new fields.NumberField({ ...requiredInteger, initial: 2 }),
+        points: new fields.ArrayField( new fields.BooleanField()),
+        temp: new fields.ArrayField( new fields.BooleanField()), //array for temp markers
+      }),
+    });
+
     return schema;
   }
 
@@ -58,6 +72,14 @@ export default class PaletteActorBase extends foundry.abstract
     //if current greater than max, cap it
     //since this is in base data, it can be altered by things like aes
     this.attributes.stress.value = Math.min(this.attributes.stress.value, this.attributes.stress.max)
+
+    //manage action and reaction points
+    //push to under-filled arrays
+    while (this.actions.action.points.length < this.actions.action.max) this.actions.action.points.push(true);
+    while (this.actions.reaction.points.length < this.actions.reaction.max) this.actions.reaction.points.push(true);
+    //pop over-filled arrays 
+    while (this.actions.action.points.length > this.actions.action.max) this.actions.action.points.pop();
+    while (this.actions.reaction.points.length > this.actions.reaction.max) this.actions.reaction.points.pop();
   }
 
   prepareDerivedData() {

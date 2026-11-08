@@ -13,7 +13,8 @@ import * as models from './data/_module.mjs';
 import { ColorDie } from './dice/die.mjs';
 import { ColorRoll } from './dice/roll.mjs';
 import { addToHand, handleColorCommand } from './dice/command.mjs';
-
+//import token classes
+import { PaletteToken } from './token/base-token.mjs';
 const collections = foundry.documents.collections;
 const sheets = foundry.appv1.sheets;
 
@@ -95,6 +96,10 @@ Hooks.once('init', function () {
       rgx: /^\/rc(?:\s+(\d+)(h?|c?))?\s*$/i, //fuck regex all my homies hate regex
       fn: handleColorCommand,
   };
+
+  //register token
+  CONFIG.Token.objectClass = PaletteToken;
+
   //register handlebars helpers
   PaletteHbsHelpers.init();
 
