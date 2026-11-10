@@ -1,6 +1,7 @@
 // Import document classes.
 import { PaletteActor } from './documents/actor.mjs';
 import { PaletteItem } from './documents/item.mjs';
+import { PaletteCombatant } from './documents/combatant.mjs';
 // Import sheet classes.
 import { PaletteActorSheet } from './sheets/actor-sheet.mjs';
 import { PaletteItemSheet } from './sheets/item-sheet.mjs';
@@ -69,6 +70,8 @@ Hooks.once('init', function () {
     spell: models.PaletteSpell,
     hue : models.PaletteHue,
   };
+   //register combatant class 
+  CONFIG.Combatant.documentClass = PaletteCombatant
 
   // Active Effects are never copied to the Actor,
   // but will still apply to the Actor from within the Item

@@ -12,6 +12,11 @@ export class PaletteToken extends foundry.canvas.placeables.Token {
     this._layoutPoints();
   }
 
+  refreshPoints(){
+    this._drawEffects();
+    //console.log("points drawing refreshed!")
+  }
+
   _drawPoints() {
     this.Points.removeChildren(); //clear the graphic :)
     //grab action/reaction points from actor so we can loop through the right amount, just in case
@@ -29,6 +34,7 @@ export class PaletteToken extends foundry.canvas.placeables.Token {
 
   _layoutPoints() {
     if (!this.Points) return;
+    if (!this.inCombat) return;
     const size = Math.max(4, Math.min(this.w, this.h) * 0.12); // scale with token size
     const action = this.Points.children.filter(c => c.resourceType === 'action');
     const reaction = this.Points.children.filter(c => c.resourceType === 'reaction');
